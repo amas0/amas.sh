@@ -36,6 +36,14 @@ p1.myfunc()
 
 ## Math
 
+```math
+  L = \frac{1}{2} \rho v^2 S C_L
+```
+
+```math
+  \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+```
+
 ## Table
 
 | Item                          | Value             |

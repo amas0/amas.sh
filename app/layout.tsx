@@ -8,12 +8,15 @@ import { Analytics } from "@vercel/analytics/next";
 import {
   Tooltip,
   TooltipContent,
+  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
 import { config } from "@/config";
 import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,13 +45,13 @@ function NavItem({
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
-        <Button variant={"ghost"}>
-          <Link href={href}>{children}</Link>
-        </Button>
+        <Link href={href} className={cn(buttonVariants({ variant: "ghost" }))}>
+          {children}
+        </Link>
       </TooltipTrigger>
       <TooltipContent
         side="bottom"
-        className="rounded border border-muted-foreground bg-background text-foreground"
+        className="rounded border bg-background text-foreground"
       >
         <span className="text-xs">{tooltip}</span>
       </TooltipContent>
@@ -67,33 +70,29 @@ export default function Layout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased p-6`}
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
-          <div className="p-8 space-y-4">
-            <header className="max-w-xl m-auto mb-4">
-              <div className="flex items-center justify-between">
-                <MainNav />
-                <div className="flex flex-1 items-center justify-end space-x-4">
-                  <nav className="flex items-center space-x-2">
-                    <NavItem tooltip="contact" href={config.socials.github}>
-                      <>
-                        <Icons.bsky className="h-5 w-5" />
-                        <span className="sr-only">Contact</span>
-                      </>
-                    </NavItem>
-                    <NavItem tooltip="github" href={config.socials.bsky}>
-                      <>
-                        <Icons.github className="h-5 w-5 text-foreground" />
-                        <span className="sr-only">GitHub</span>
-                      </>
-                    </NavItem>
-                  </nav>
-                  <ColorModeToggle />
+          <TooltipProvider>
+            <div className="p-8 space-y-4">
+              <header className="max-w-xl m-auto mb-4">
+                <div className="flex items-center justify-between">
+                  <MainNav />
+                  <div className="flex flex-1 items-center justify-end space-x-2">
+                    <nav className="flex items-center space-x-1">
+                      <NavItem tooltip="github" href={config.socials.bsky}>
+                        <>
+                          <GitHubLogoIcon className="text-foreground h-5 w-5" />
+                          <span className="sr-only">GitHub</span>
+                        </>
+                      </NavItem>
+                    </nav>
+                    <ColorModeToggle />
+                  </div>
                 </div>
-              </div>
-            </header>
-            {children}
-            <Analytics />
-          </div>
+              </header>
+              {children}
+            </div>
+          </TooltipProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

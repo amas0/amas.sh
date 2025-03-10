@@ -10,8 +10,10 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkGFM from "remark-gfm";
+import rehypeKatex from "rehype-katex";
 import { unified } from "unified";
 import { z } from "zod";
+import rehypeDocument from "rehype-document";
 
 const PostFrontMatterSchema = z.object({
   title: z.string(),
@@ -42,8 +44,14 @@ export async function getPost(slug: string) {
       .use(remarkRehype)
       .use(rehypeParse)
       .use(remarkParse)
+      .use(remarkGFM)
+      .use(rehypeDocument, {
+        // Get the latest one from: <https://katex.org/docs/browser>.
+        css: "https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css",
+      })
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       .use(rehypeSlug)
+      .use(rehypeKatex)
       .use(rehypeToc, {
         nav: true,
         customizeTOC: (args) => {
