@@ -1,0 +1,32 @@
+figure > pre {
+  @apply overflow-x-auto rounded p-3;
+}
+
+figcaption {
+  @apply mb-1 ml-2 text-sm text-muted-foreground;
+}
+
+pre > code {
+  counter-reset: line;
+  @apply font-mono;
+}
+
+pre code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+pre code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 2rem;
+}
+
+pre code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 3rem;
+}

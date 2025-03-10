@@ -1,0 +1,27 @@
+@layer base {
+  nav.toc ol {
+    @apply list-none;
+  }
+  nav.toc > .toc-level {
+    @apply ml-0 list-none border-l;
+  }
+
+  nav.toc .toc-link {
+    @apply text-muted-foreground no-underline hover:underline xl:block;
+  }
+
+  nav.toc .toc-active {
+    @apply text-foreground;
+  }
+
+  .toc {
+    @apply sticky top-20 mt-0 hidden translate-x-full  pl-16 text-base xl:block;
+    shape-outside: inset(50%);
+    float: right;
+    /* transform: translateY(-50px); */
+  }
+
+  .toc ol {
+    @apply ml-0 border-l pr-4;
+  }
+}
