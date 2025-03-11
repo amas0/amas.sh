@@ -1,9 +1,6 @@
-import ActiveLinks from "@/components/active-links";
 import { Post } from "@/components/post";
 import { config } from "@/config";
-import { formatDate } from "@/lib/date";
 import { getAllPosts, getPost } from "@/lib/posts";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PageOpts {

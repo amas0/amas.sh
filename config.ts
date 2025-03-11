@@ -3,6 +3,8 @@ const description = "SITE. SITE and other SITE.";
 export const config = {
   name: "SITE",
   author: "AUTHOR",
+  url: "https://example.com",
+  image: "",
   socials: {
     bsky: "AUTHORASDFG1234",
     github: "AUTHORASDFG1234",

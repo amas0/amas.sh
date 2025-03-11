@@ -2,15 +2,15 @@
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
 
 export function ColorModeToggle() {
   const { setTheme } = useTheme();

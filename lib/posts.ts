@@ -1,33 +1,29 @@
+import { post as vegaPost } from "@/app/vega-example/page";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import fs from "fs";
 import { glob } from "glob";
 import fm from "gray-matter";
 import path from "path";
+import rehypeDocument from "rehype-document";
+import rehypeKatex from "rehype-katex";
 import rehypeParse from "rehype-parse";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import remarkGFM from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import remarkGFM from "remark-gfm";
-import rehypeKatex from "rehype-katex";
 import { unified } from "unified";
 import { z } from "zod";
-import rehypeDocument from "rehype-document";
 
 type PostListing = {
   slug: string;
   title: string;
   date: Date;
+  description: string;
 };
 
-const OTHER_POSTS: PostListing[] = [
-  {
-    date: new Date(2025),
-    title: "Vega Example",
-    slug: "/vega-example",
-  },
-];
+const OTHER_POSTS: PostListing[] = [vegaPost];
 
 const PostFrontMatterSchema = z.object({
   title: z.string(),
@@ -108,14 +104,15 @@ export const getAllPosts = ({
       const file = fs.readFileSync(path.join(process.cwd(), filename));
       const { data } = fm(file.toString());
 
-      const frontmatter = PostFrontMatterSchema.parse(data);
+      const { title, date, description } = PostFrontMatterSchema.parse(data);
 
       const slug = filename.split("/")[1]?.slice(0, -3);
 
       return {
         slug,
-        title: frontmatter.title,
-        date: frontmatter.date,
+        title,
+        date,
+        description,
       };
     })
     .concat(OTHER_POSTS)

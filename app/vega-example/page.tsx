@@ -1,6 +1,13 @@
 import { Post } from "@/components/post";
 import VegaLiteChart from "@/components/vega";
 
+export const post = {
+  date: new Date(2025),
+  title: "Vega Example",
+  slug: "/vega-example",
+  description: "A vega post",
+};
+
 export default function Page() {
   return (
     <Post title="Vega example" date={new Date("2025")}>
