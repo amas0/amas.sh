@@ -1,7 +1,7 @@
 const description = "SITE. SITE and other SITE.";
 
 export const config = {
-  name: "Blog",
+  name: "SITE",
   author: "AUTHOR",
   socials: {
     bsky: "AUTHORASDFG1234",
