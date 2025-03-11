@@ -15,6 +15,20 @@ import { unified } from "unified";
 import { z } from "zod";
 import rehypeDocument from "rehype-document";
 
+type PostListing = {
+  slug: string;
+  title: string;
+  date: Date;
+};
+
+const OTHER_POSTS: PostListing[] = [
+  {
+    date: new Date(2025),
+    title: "Vega Example",
+    slug: "/vega-example",
+  },
+];
+
 const PostFrontMatterSchema = z.object({
   title: z.string(),
   date: z.date(),
@@ -85,9 +99,11 @@ export async function getPost(slug: string) {
   }
 }
 
-export const getAllPosts = ({ limit }: { limit?: number } = {}) => {
+export const getAllPosts = ({
+  limit,
+}: { limit?: number } = {}): PostListing[] => {
   const files = glob.sync(path.join("posts/*.md"));
-  const posts = files
+  let posts = files
     .map((filename: string) => {
       const file = fs.readFileSync(path.join(process.cwd(), filename));
       const { data } = fm(file.toString());
@@ -97,10 +113,12 @@ export const getAllPosts = ({ limit }: { limit?: number } = {}) => {
       const slug = filename.split("/")[1]?.slice(0, -3);
 
       return {
-        ...frontmatter,
         slug,
+        title: frontmatter.title,
+        date: frontmatter.date,
       };
     })
+    .concat(OTHER_POSTS)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   if (limit) {

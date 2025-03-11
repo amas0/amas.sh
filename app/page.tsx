@@ -6,7 +6,7 @@ export default function Page() {
   const posts = getAllPosts({ limit: 5 });
 
   return (
-    <main className="mx-auto max-w-xl space-y-4">
+    <main className="space-y-4">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

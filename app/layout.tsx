@@ -45,12 +45,7 @@ function NavItem({
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
-        <Link
-          href={href}
-          className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-        >
-          {children}
-        </Link>
+        <Link href={href}>{children}</Link>
       </TooltipTrigger>
       <TooltipContent
         side="bottom"
@@ -70,22 +65,18 @@ export default function Layout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased p-6`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased p-2 md:p-6`}
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
           <TooltipProvider>
-            <div className="p-8 space-y-4">
-              <header className="max-w-xl m-auto mb-4">
+            <div className="p-8 space-y-4 max-w-xl m-auto">
+              <header className="mb-4">
                 <div className="flex items-center justify-between">
                   <MainNav />
                   <div className="flex flex-1 items-center justify-end space-x-2">
-                    <nav className="flex items-center space-x-1">
-                      <NavItem tooltip="github" href={config.socials.github}>
-                        <>
-                          <GitHubLogoIcon className="text-foreground" />
-                          <span className="sr-only">GitHub</span>
-                        </>
-                      </NavItem>
+                    <nav className="flex items-center space-x-4">
+                      <Link href={config.socials.github}>GitHub</Link>
+                      <Link href={config.socials.github}>Bluesky</Link>
                     </nav>
                     <ColorModeToggle />
                   </div>

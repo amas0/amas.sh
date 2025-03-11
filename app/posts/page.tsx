@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function PostPage() {
   const posts = getAllPosts();
   return (
-    <div className="mx-auto max-w-xl">
+    <main className="space-y-4">
       <h1>Posts</h1>
       <ul>
         {posts.map((post) => {
@@ -19,7 +19,7 @@ export default function PostPage() {
           }
         })}
       </ul>
-    </div>
+    </main>
   );
 }
 

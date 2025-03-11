@@ -1,4 +1,5 @@
 import ActiveLinks from "@/components/active-links";
+import { Post } from "@/components/post";
 import { config } from "@/config";
 import { formatDate } from "@/lib/date";
 import { getAllPosts, getPost } from "@/lib/posts";
@@ -11,7 +12,7 @@ interface PageOpts {
   }>;
 }
 
-export default async function Post({ params }: PageOpts) {
+export default async function Page({ params }: PageOpts) {
   const paramsVal = await params;
   const post = await getPost(paramsVal.post);
 
@@ -21,27 +22,12 @@ export default async function Post({ params }: PageOpts) {
 
   return (
     <main className="space-y-4">
-      <div className="mx-auto flex max-w-xl flex-col space-y-4">
-        <h1 className="tracking-tight mb-0 scroll-m-20 text-4xl">
-          {post.data.title}
-        </h1>
-        <div className="flex gap-2">
-          <time className="text-foreground">
-            {formatDate(new Date(post.data.date))}
-          </time>
-          <span className="text-foreground">{config.author}</span>
-        </div>
-      </div>
-
-      <div
-        className="post mx-auto space-y-4 max-w-xl"
-        dangerouslySetInnerHTML={{ __html: post.remark }}
-      ></div>
-
-      <div className="mt-4 flex justify-center md:mt-16">
-        <Link href="/posts">Read More</Link>
-      </div>
-      <ActiveLinks />
+      <Post title={post.data.title} date={post.data.date}>
+        <div
+          className="post mx-auto space-y-4"
+          dangerouslySetInnerHTML={{ __html: post.remark }}
+        ></div>
+      </Post>
     </main>
   );
 }
