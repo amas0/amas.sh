@@ -45,7 +45,10 @@ function NavItem({
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
-        <Link href={href} className={cn(buttonVariants({ variant: "ghost" }))}>
+        <Link
+          href={href}
+          className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+        >
           {children}
         </Link>
       </TooltipTrigger>
@@ -77,9 +80,9 @@ export default function Layout({
                   <MainNav />
                   <div className="flex flex-1 items-center justify-end space-x-2">
                     <nav className="flex items-center space-x-1">
-                      <NavItem tooltip="github" href={config.socials.bsky}>
+                      <NavItem tooltip="github" href={config.socials.github}>
                         <>
-                          <GitHubLogoIcon className="text-foreground h-5 w-5" />
+                          <GitHubLogoIcon className="text-foreground" />
                           <span className="sr-only">GitHub</span>
                         </>
                       </NavItem>

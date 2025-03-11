@@ -7,6 +7,24 @@ export const config = {
     bsky: "AUTHORASDFG1234",
     github: "AUTHORASDFG1234",
   },
+  projects: [
+    {
+      name: "cillum",
+      url: "#",
+    },
+    {
+      name: "exercitation",
+      url: "#",
+    },
+    {
+      name: "nulla",
+      url: "#",
+    },
+    {
+      name: "labore",
+      url: "#",
+    },
+  ],
   metadata: {
     description,
     title: "SITE",

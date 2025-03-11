@@ -1,3 +1,4 @@
+import { config } from "@/config";
 import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
 
@@ -29,18 +30,11 @@ export default function Page() {
 
       <h2>Projects</h2>
       <ul>
-        <li>
-          <a href="#">cillum</a>
-        </li>
-        <li>
-          <a href="#">exercitation</a>
-        </li>
-        <li>
-          <a href="#">nulla</a>
-        </li>
-        <li>
-          <a href="#">labore</a>
-        </li>
+        {config.projects.map((project) => (
+          <li key={`${project.url}${project.name}`}>
+            <a href={project.url}>{project.name}</a>
+          </li>
+        ))}
       </ul>
     </main>
   );
