@@ -65,11 +65,11 @@ export default function Layout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased p-2 md:p-6`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
           <TooltipProvider>
-            <div className="p-8 space-y-4 max-w-xl m-auto">
+            <div className="space-y-4 max-w-xl mx-auto flex flex-col h-full min-h-screen p-4 md:py-8">
               <header className="mb-4">
                 <div className="flex items-center justify-between">
                   <MainNav />
@@ -83,6 +83,9 @@ export default function Layout({
                 </div>
               </header>
               {children}
+              <div className="items-end flex-1 flex flex-col justify-end">
+                <span>2025</span>
+              </div>
             </div>
           </TooltipProvider>
         </ThemeProvider>
