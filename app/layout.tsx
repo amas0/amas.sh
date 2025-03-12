@@ -42,8 +42,18 @@ export default function Layout({
                   <MainNav />
                   <div className="flex flex-1 items-center justify-end space-x-2">
                     <nav className="flex items-center space-x-4">
-                      <Link href={config.socials.github}>GitHub</Link>
-                      <Link href={config.socials.github}>Bluesky</Link>
+                      <Link
+                        className="no-underline"
+                        href={config.socials.github}
+                      >
+                        GitHub
+                      </Link>
+                      <Link
+                        className="no-underline"
+                        href={config.socials.github}
+                      >
+                        Bluesky
+                      </Link>
                     </nav>
                     <ColorModeToggle />
                   </div>
