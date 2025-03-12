@@ -1,6 +1,5 @@
 ---
 title: A Post
-slug: a-post
 date: 2025-03-08T22:01:43Z
 description: "a post."
 ---
