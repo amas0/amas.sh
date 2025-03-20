@@ -1,5 +1,5 @@
 figure > pre {
-  @apply overflow-x-auto rounded p-3;
+  @apply overflow-x-auto rounded p-3 max-w-full box-border;
 }
 
 figcaption {
@@ -10,6 +10,11 @@ pre > code {
   counter-reset: line;
   @apply font-mono;
 }
+
+p > code {
+  @apply bg-muted rounded-xs pl-1 pr-1;
+}
+
 
 pre code > [data-line]::before {
   counter-increment: line;

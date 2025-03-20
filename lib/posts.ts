@@ -10,9 +10,11 @@ import rehypeParse from "rehype-parse";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import remarkMath from "remark-math";
 import remarkGFM from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
 import { unified } from "unified";
 import { z } from "zod";
 
@@ -51,17 +53,18 @@ export async function getPost(slug: string) {
     const post = PostFrontMatterSchema.parse(data);
 
     const u = unified()
-      .use(remarkRehype)
-      .use(rehypeParse)
       .use(remarkParse)
       .use(remarkGFM)
+      .use(remarkMath)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(rehypeSlug)
+      .use(rehypeKatex)
       .use(rehypeDocument, {
         // Get the latest one from: <https://katex.org/docs/browser>.
         css: "https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css",
       })
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      .use(rehypeSlug)
-      .use(rehypeKatex)
       .use(rehypeToc, {
         nav: true,
         customizeTOC: (args) => {

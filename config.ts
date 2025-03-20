@@ -1,13 +1,13 @@
 const description = "SITE. SITE and other SITE.";
 
 export const config = {
-  name: "SITE",
-  author: "AUTHOR",
-  url: "https://example.com",
+  name: "amas\.sh",
+  author: "amas",
+  url: "https://amas.sh",
   image: "",
   socials: {
-    bsky: "AUTHORASDFG1234",
-    github: "AUTHORASDFG1234",
+    bsky: "@amas0.bsky.social",
+    github: "amas0",
   },
   projects: [
     {
