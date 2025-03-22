@@ -1,4 +1,3 @@
-import { post as vegaPost } from "@/app/vega-example/page";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import fs from "fs";
 import { glob } from "glob";
@@ -25,7 +24,7 @@ type PostListing = {
   description: string;
 };
 
-const OTHER_POSTS: PostListing[] = [vegaPost];
+const OTHER_POSTS: PostListing[] = [];
 
 const PostFrontMatterSchema = z.object({
   title: z.string(),
