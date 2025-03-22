@@ -1,31 +1,15 @@
-const description = "SITE. SITE and other SITE.";
+const description = "amas.sh is a personal site and blog covering interests in statistics, data science, math, Linux, etc.";
 
 export const config = {
   name: "amas\.sh",
   author: "amas",
   url: "https://amas.sh",
-  image: "",
+  image: "/amas.svg",
   socials: {
     bsky: "https://bsky.app/profile/amas0.bsky.social",
     github: "https://github.com/amas0",
   },
   projects: [
-    {
-      name: "cillum",
-      url: "#",
-    },
-    {
-      name: "exercitation",
-      url: "#",
-    },
-    {
-      name: "nulla",
-      url: "#",
-    },
-    {
-      name: "labore",
-      url: "#",
-    },
   ],
   metadata: {
     description,
