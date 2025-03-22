@@ -139,4 +139,47 @@
   .katex-html {
     color: currentColor;
   }
+
+  /* Ensure display equations don't overflow the viewport */
+  .katex-display {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 0.5em 0; /* Optional: Add some padding for better aesthetics */
+    
+    /* Responsive scaling */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Make the KaTeX content responsive */
+  .katex-display > .katex {
+    display: inline-block;
+    max-width: 100%;
+    font-size: clamp(1rem, 5vw, 1.5rem); /* Responsive font size */
+  }
+
+  /* Optional: Style the scroll bar for better visibility */
+  .katex-display::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .katex-display::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  /* Ensure inline equations don't exceed container width */
+  .katex {
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  /* Optional: Smooth scaling */
+  @media (max-width: 600px) {
+    .katex-display > .katex {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
 }

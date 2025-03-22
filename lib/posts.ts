@@ -5,7 +5,6 @@ import fm from "gray-matter";
 import path from "path";
 import rehypeDocument from "rehype-document";
 import rehypeKatex from "rehype-katex";
-import rehypeParse from "rehype-parse";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
