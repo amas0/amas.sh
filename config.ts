@@ -1,7 +1,8 @@
 const description = "amas.sh is a personal site and blog covering interests in statistics, data science, math, Linux, etc.";
+const siteName = "amas\.sh"
 
 export const config = {
-  name: "amas\.sh",
+  name: siteName,
   author: "amas",
   url: "https://amas.sh",
   image: "/amas.svg",
@@ -13,17 +14,17 @@ export const config = {
   ],
   metadata: {
     description,
-    title: "SITE",
-    metadataBase: new URL("https://SITE.sh"),
+    title: siteName,
+    metadataBase: new URL("https://amas.sh"),
     openGraph: {
       description,
-      title: "SITE",
+      title: siteName,
       url: "/",
       images: [
         {
-          url: "https://SITE.sh/SITE.jpg",
-          width: 1500,
-          height: 500,
+          url: "https://amas.sh/amas.png",
+          width: 256,
+          height: 256,
         },
       ],
       type: "website",

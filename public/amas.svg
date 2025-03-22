@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:#333333;fill-opacity:1;stroke-width:0.666667"
+       id="rect3"
+       width="16"
+       height="16"
+       x="0"
+       y="0" />
+    <g
+       id="g3"
+       transform="matrix(0.12944883,0,0,0.12944883,-8.6777945,-5.6343133)"
+       style="fill:#38c62f;fill-opacity:1">
+      <text
+         xml:space="preserve"
+         style="font-size:18.6667px;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#38c62f;fill-opacity:1;stroke-width:0.666667"
+         x="73.919846"
+         y="105.42152"
+         id="text1"><tspan
+           x="73.919846"
+           y="105.42152"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:'GohuFont uni14 Nerd Font';-inkscape-font-specification:'GohuFont uni14 Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#38c62f;fill-opacity:1"
+           id="tspan2">AM</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:'GohuFont uni14 Nerd Font';-inkscape-font-specification:'GohuFont uni14 Nerd Font, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#38c62f;fill-opacity:1;stroke-width:0.666667"
+         x="74.066597"
+         y="167.24342"
+         id="text3"><tspan
+           id="tspan3"
+           x="74.066597"
+           y="167.24342">AS</tspan></text>
+    </g>
+  </g>
+</svg>
