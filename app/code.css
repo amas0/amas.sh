@@ -8,7 +8,7 @@ figcaption {
 
 pre > code {
   counter-reset: line;
-  @apply font-mono;
+  @apply font-mono text-sm;
 }
 
 p > code {
