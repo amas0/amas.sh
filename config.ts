@@ -6,8 +6,8 @@ export const config = {
   url: "https://amas.sh",
   image: "",
   socials: {
-    bsky: "@amas0.bsky.social",
-    github: "amas0",
+    bsky: "https://bsky.app/profile/amas0.bsky.social",
+    github: "https://github.com/amas0",
   },
   projects: [
     {

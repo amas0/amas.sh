@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -46,11 +47,11 @@ export default function Layout({
                         className="no-underline"
                         href={config.socials.github}
                       >
-                        GitHub
+                        <Image src="github.svg" alt="GitHub" width={20} height={20} />
                       </Link>
                       <Link
                         className="no-underline"
-                        href={config.socials.github}
+                        href={config.socials.bsky}
                       >
                         Bluesky
                       </Link>
