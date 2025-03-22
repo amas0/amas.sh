@@ -131,4 +131,12 @@
   button {
     @apply text-foreground;
   }
+
+  .katex,
+  .katex-display,
+  .katex-inline,
+  .katex-mathml,
+  .katex-html {
+    color: currentColor;
+  }
 }
