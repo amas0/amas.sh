@@ -47,13 +47,15 @@ export default function Layout({
                         className="no-underline"
                         href={config.socials.github}
                       >
-                        <Image src="github.svg" alt="GitHub" width={20} height={20} />
+                        <Image src="/github.svg" alt="GitHub" width={20} height={20}
+                          className="filter dark:invert transition-filter duration-300" />
                       </Link>
                       <Link
                         className="no-underline"
                         href={config.socials.bsky}
                       >
-                        Bluesky
+                        <Image src="/bluesky.svg" alt="Bluesky" width={20} height={20}
+                          className="filter dark:invert transition-filter duration-300" />
                       </Link>
                     </nav>
                     <ColorModeToggle />
