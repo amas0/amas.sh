@@ -1,6 +1,6 @@
 ---
 title: Recovering real-time battery power readings on Linux 
-date: 2025-03-22
+date: 2025-03-23T00:44:00.000Z
 description: An exploration into battery power readings on Linux. Showing how on my laptop, the power readings are smoothed and that, by learning the smoothing function, true power readings can be recovered.
 ---
 
