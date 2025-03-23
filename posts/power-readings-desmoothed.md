@@ -1,7 +1,7 @@
 ---
 title: Recovering real-time battery power readings on Linux 
 date: 2025-03-22
-description: "On a Linux laptop, the kernel uses power and energy readings directly from the battery to estimate how long it will last. On my machine, these power readings are smoothed out to avoid fluctuating time estimates. However, the smoothing function can be inferred and inverted to recover real-time power readings directly."
+description: An exploration into battery power readings on Linux. Showing how on my laptop, the power readings are smoothed and that, by learning the smoothing function, true power readings can be recovered.
 ---
 
 As part of an effort to better understand how various factors impact my
