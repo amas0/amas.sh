@@ -8,8 +8,8 @@ export async function GET() {
   const siteUrl = config.url;
 
   const feedOptions = {
-    title: "Your RSS Feed Title",
-    description: "Your RSS Feed Description",
+    title: config.name,
+    description: config.metadata.description,
     site_url: siteUrl,
     feed_url: `${siteUrl}/feed.xml`,
     image_url: config.image,

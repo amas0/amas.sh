@@ -5,7 +5,7 @@ export const config = {
   name: siteName,
   author: "amas",
   url: "https://amas.sh",
-  image: "/amas.svg",
+  image: "https://amas.sh/amas.png",
   socials: {
     bsky: "https://bsky.app/profile/amas0.bsky.social",
     github: "https://github.com/amas0",
