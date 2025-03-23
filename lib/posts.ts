@@ -36,9 +36,9 @@ export interface Post {
     date: number;
     title: string;
     description?: string;
-    path: string;
   };
   content: string;
+  slug: string;
 }
 
 export async function getPost(slug: string) {
@@ -89,6 +89,7 @@ export async function getPost(slug: string) {
     return {
       data: post,
       content,
+      slug,
       remark: String(f),
     };
   } catch (e) {

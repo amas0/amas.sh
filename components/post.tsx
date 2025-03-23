@@ -6,25 +6,28 @@ import ActiveLinks from "./active-links";
 export function Post({
   title,
   date,
+  slug,
   children,
 }: {
   title: string;
   date: Date;
+  slug: string;
   children: React.ReactElement;
 }) {
   return (
     <>
-      <div className="flex flex-col space-y-4">
-        <h1 className="tracking-tight mb-0 scroll-m-20 text-4xl">{title}</h1>
+      <div className="flex flex-col space-y-2">
+        <Link href={slug} className="no-underline">
+          <h1 className="tracking-tight mb-0 scroll-m-20 text-3xl">{title}</h1>
+        </Link>
         <div className="flex gap-2">
           <time className="text-foreground">{formatDate(new Date(date))}</time>
-          <span className="text-foreground">{config.author}</span>
         </div>
-      </div>
+      </div >
       {children}
-      <div className="mt-4 flex justify-center md:mt-16">
-        <Link href="/posts">Read More</Link>
-      </div>
+      < div className="mt-4 flex justify-center md:mt-16" >
+        <Link href="/posts">More Posts</Link>
+      </div >
       <ActiveLinks />
     </>
   );

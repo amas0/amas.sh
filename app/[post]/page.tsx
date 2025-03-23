@@ -19,13 +19,13 @@ export default async function Page({ params }: PageOpts) {
 
   return (
     <main className="space-y-4">
-      <Post title={post.data.title} date={post.data.date}>
+      <Post title={post.data.title} date={post.data.date} slug={post.slug} >
         <div
           className="post mx-auto space-y-4"
           dangerouslySetInnerHTML={{ __html: post.remark }}
         ></div>
       </Post>
-    </main>
+    </main >
   );
 }
 
