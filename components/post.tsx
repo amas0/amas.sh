@@ -21,7 +21,7 @@ export function Post({
           <h1 className="tracking-tight mb-0 scroll-m-20 text-3xl">{title}</h1>
         </Link>
         <div className="flex gap-2">
-          <time className="text-foreground">{formatDate(new Date(date))}</time>
+          <time className="text-foreground">{formatDate(date)}</time>
         </div>
       </div >
       {children}

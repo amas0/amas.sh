@@ -33,7 +33,7 @@ const PostFrontMatterSchema = z.object({
 
 export interface Post {
   data: {
-    date: number;
+    date: Date;
     title: string;
     description?: string;
   };
