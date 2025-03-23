@@ -63,9 +63,6 @@ export default function Layout({
                 </div>
               </header>
               {children}
-              <div className="items-end flex-1 flex flex-col justify-end">
-                <span>2025</span>
-              </div>
             </div>
           </TooltipProvider>
         </ThemeProvider>
