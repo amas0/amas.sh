@@ -61,23 +61,23 @@ export async function getPost(slug: string) {
       .use(rehypeDocument, {
         // Get the latest one from: <https://katex.org/docs/browser>.
         css: "https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css",
-      })
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      .use(rehypeToc, {
-        nav: true,
-        customizeTOC: (args) => {
-          if (!args.children) {
-            return true;
-          }
-
-          return {
-            type: "element",
-            tagName: "nav",
-            properties: { className: "toc" },
-            children: [...args.children],
-          };
-        },
       });
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    //.use(rehypeToc, {
+    //  nav: true,
+    //  customizeTOC: (args) => {
+    //    if (!args.children) {
+    //      return true;
+    //    }
+
+    //    return {
+    //      type: "element",
+    //      tagName: "nav",
+    //      properties: { className: "toc" },
+    //      children: [...args.children],
+    //    };
+    //  },
+    //});
 
     const f = await u
       .use(rehypePrettyCode, {
