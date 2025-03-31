@@ -13,7 +13,7 @@ export default function PostPage() {
           if (post.slug) {
             return (
               <li key={post.slug}>
-                <Link href={post.slug}>{post.title}</Link>
+                <Link href={post.slug}>{post.date.toLocaleDateString()} - {post.title}</Link>
               </li>
             );
           }
