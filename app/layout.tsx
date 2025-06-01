@@ -37,7 +37,7 @@ export default function Layout({
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
           <TooltipProvider>
-            <div className="space-y-4 max-w-xl mx-auto flex flex-col h-full min-h-screen p-4 md:py-8">
+            <div className="space-y-4 max-w-3xl mx-auto flex flex-col h-full min-h-screen p-4 md:py-8">
               <header className="mb-4">
                 <div className="flex items-center justify-between">
                   <MainNav />
