@@ -40,16 +40,16 @@ language.
 
 The fundamental advance of machine learning is the ability to avoid this
 explosion of complexity by raising the level of abstraction at which certain
-components are implementable. With sufficient demonstrations of outputs 
-corresponding to particular inputs, a component can be implemented (at least
-approximately) without consideration of any finer sub-components. This expands
-the space of practically implementable components and the types of systems
-that can be built with them. Prior to techniques now commonly referred to
-as artificial intelligence -- large language models and related
-approaches -- the latent complexity of components that we could effectively
-approximate with machine learning was limited by the amount of demonstrations
-we could provide for training and the compute required to adapt the model to
-the given demonstrations.
+components are implementable. With sufficient demonstrations of outputs
+corresponding to particular inputs, a component can be implemented without
+consideration of any finer sub-components. This expands the space of
+practically implementable components and the types of systems that can be built
+with them. Prior to techniques now commonly referred to as artificial
+intelligence -- large language models and related approaches -- the latent
+complexity of components that we could effectively approximate with machine
+learning was limited by the amount of demonstrations we could provide for
+training and the compute required to adapt the model to the given
+demonstrations.
 
 Learning functional components from data is powerful, but from a systems
 building perspective it requires care. The subset of components that can
@@ -59,11 +59,45 @@ representation of the underlying mechanisms. In overly simple terms this tends
 to mean that your future expected inputs and desired outputs should look _like_
 ones you have seen before. A system that regularly experiences novelty, say
 from user behavior, can quickly break down if machine learning approaches are
-applied inappropriately.
+applied inappropriately. Another important consideration in incorporating
+machine learned components into systems is that these approaches produce
+approximations. This is a general fact. While it's possible for a machine
+learned system to model a deterministic process, it is the exception not the
+rule. We trade the ability to build new kinds of components for the price of
+introducing uncertainty into the system.[^1]
 
-A second important factor in incorporating machine learned components into
-systems is that these approaches produce approximations. This is a general
-fact. While it's possible for a machine learning system to learn a
-deterministic process, it is the exception not the rule. We trade the ability
-to build new kinds of components for the price of introducing uncertainty into
-the system. This 
+Empirical analysis is a key approach to managing the uncertainty that exists
+within systems that incorporate machine learning. These systems must be tested.
+Such empirical testing is built into the development and training of
+traditional machine learning models. Consider an email spam detection system. A
+standard approach to this classification problem will provide examples to train
+the model and, typically, hold out a portion of data unseen during training to
+provide an unbiased measure of the model's performance. If this process reports
+a 90% accuracy at classifying spam emails, an engineer incorporating the model
+into a system component can then engineer around that uncertainty (by, say,
+putting all the spam emails in a separate folder that you occasionally check to
+see if something important has been misclassified). Responsible system building
+does not stop at initial testing. Since models are trained to perform well on
+the data they were trained on, performance may degrade if the inputs into the
+components shift over time. This phenomenon - known as _distribution shift_ -
+necessitates continuous testing and quality evaluation of machine learned
+components in the system. Only by regularly considering inputs to the system
+and validating the output can confidence in performance be maintained.
+
+
+
+
+
+
+[^1]: Most sufficiently complex systems contain uncertainty about their
+    behavior, but the uncertainty contained within machine learned components
+is different. In a complex system, the uncertainty is an expression of lack of
+total knowledge on how all the components function together and whether the
+implemented system behaves as it is designed to. When faced with unexpected or
+erroneous behavior in a traditional complex system, one can carefully step
+through the mechanistic implementation and answer _why_ the system behaved as
+it did. The uncertainty of a machine learned component resists a
+straightforward answer to why. Whole subfields of research dedicate themselves
+to explaining and interpreting the behavior of machine learning models.
+Challenging those efforts, the sophistication and complexity of modern machine
+learning models has mostly outpaced the work to interpret them.
