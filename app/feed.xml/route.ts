@@ -23,7 +23,7 @@ export async function GET() {
     feed.item({
       title: post.title,
       description: post.description,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${siteUrl}/${post.slug}`,
       guid: post.slug,
       date: post.date,
     });
