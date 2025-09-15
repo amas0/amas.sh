@@ -1,6 +1,6 @@
-import { formatDate } from "@/lib/date";
 import Link from "next/link";
 import ActiveLinks from "./active-links";
+import Date from "./date";
 
 export function Post({
   title,
@@ -20,9 +20,7 @@ export function Post({
           {title}
         </h1>
         <div className="flex gap-2">
-          <time className="text-muted-foreground opacity-60">
-            {formatDate(date)}
-          </time>
+          <Date value={date} />
         </div>
       </div>
       {children}

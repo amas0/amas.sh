@@ -3,14 +3,12 @@ import fs from "fs";
 import { glob } from "glob";
 import { compileMDX, MDXRemoteProps } from "next-mdx-remote/rsc";
 import path from "path";
-import rehypeDocument from "rehype-document";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkGFM from "remark-gfm";
 import remarkMath from "remark-math";
-import remarkRehype from "remark-rehype";
-import rehypeUnwrapImages from "rehype-unwrap-images";
 
 type PostListing = {
   slug: string;

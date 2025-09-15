@@ -1,5 +1,5 @@
+import Date from "@/components/date";
 import { config } from "@/config";
-import { formatDate } from "@/lib/date";
 import { getAllPosts } from "@/lib/posts";
 import { type Metadata } from "next";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default async function PostPage() {
             return (
               <li key={post.slug}>
                 <div className="flex gap-2">
-                  {formatDate(post.date)}
+                  <Date value={post.date} />
                   <Link href={post.slug}>{post.title}</Link>
                 </div>
               </li>
