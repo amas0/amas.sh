@@ -10,13 +10,6 @@ import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkGFM from "remark-gfm";
 import remarkMath from "remark-math";
 
-type PostListing = {
-  slug: string;
-  title: string;
-  date: string;
-  description: string;
-};
-
 type Frontmatter = {
   title: string;
   date: string;
