@@ -3,7 +3,7 @@ import { getAllPosts } from "@/lib/posts";
 import RSS from "rss";
 
 export async function GET() {
-  const blogPosts = await getAllPosts(); // Fetch your blog posts or any other data you want to feed
+  const blogPosts = await getAllPosts();
 
   const siteUrl = config.url;
 

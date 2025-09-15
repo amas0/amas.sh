@@ -12,7 +12,7 @@ brightness levels.
 My primary focus was the direct effect of screen brightness as an independent
 variable on power draw. Standard LCD displays, such as the one in my 7th
 generation ThinkPad X1 Carbon, maintain a uniform brightness regardless of the
-on-screen content.[^1] 
+on-screen content.[^1]
 
 My experimental setup was simple. I wrote a [Python
 script](#experiment-code) that randomly adjusted the brightness of my display,
@@ -28,21 +28,12 @@ brightness levels overlaid. The power usage moves along with the changing
 brightness. Spikes in power usage are common, so we must be careful to
 appropriately account for noise in the analysis.
 
-<div style="text-align: center;">
-  <img src="/post-images/backlight-power-usage/raw_obs_with_brightness.svg" alt=
-  "Graph of power readings versus time during the experiment with brightness
-    overlaid. Visually, one can see power usage moving along with the set
-    brightness." style="display: block; margin: 0 auto"/>
-</div>
+![Graph of power readings versus time during the experiment with brightness overlaid. Visually, one can see power usage moving along with the set brightness.](/post-images/backlight-power-usage/raw_obs_with_brightness.svg)
 
 The relationship between brightness and power is clearer when plotted against
 each other:
 
-<div style="text-align: center;">
-  <img src="/post-images/backlight-power-usage/power_vs_brightness.svg" alt=
-  "Graph of power readings versus brightness showing a strong linear trend."
-    style="display: block; margin: 0 auto"/>
-</div>
+![Graph of power readings versus brightness showing a strong linear trend.](/post-images/backlight-power-usage/power_vs_brightness.svg)
 
 The plot shows a pretty compelling linear relationship. I suspect that the
 observations that lie outside the tight linear region correspond to the spikes
@@ -72,12 +63,12 @@ term that is likely associated with the power spikes we see in the raw
 observations. A generative model that captures this behavior would probably
 best do so in a time-dependent manner -- in the graph of power readings against
 time, it looks like the gaps between spikes are semi-regular, suggesting some
-kind of time-dependent behavior. That being said, modeling the noise process 
+kind of time-dependent behavior. That being said, modeling the noise process
 accurately is mostly incidental to my inference goals. As long as I can
 capture the location of the linear trend reasonably well, then it should be
 fine.
 
-With that in mind, a Student's t noise model should be able to withstand 
+With that in mind, a Student's t noise model should be able to withstand
 the idiosyncracies of this data and hopefully capture the main trend.
 The Bayesian model that I am going to fit here is then:
 
@@ -92,7 +83,7 @@ P | \alpha, \delta, \beta, I_{on}, B, \nu, \sigma &\sim \mathrm{StudentT}(\nu, \
 \end{align*}
 $$
 
-I rescaled the power readings to watts, so as to put the observations on 
+I rescaled the power readings to watts, so as to put the observations on
 approximately unit scale as well as rescaled the brightness percentage
 to $[0, 1]$. The above priors are relatively wide and should contain
 the likely regions of interest. The Stan code for this model is as follows:
@@ -135,24 +126,18 @@ model {
 This model fits smoothly against the experimental data with no diagnostic
 warnings. A posterior summary of the parameters is:
 
-| Parameter | Mean | 5% | 50% | 95% |
-| --------- | ---- | -- | --- | --- |
+| Parameter | Mean | 5%   | 50%  | 95%  |
+| --------- | ---- | ---- | ---- | ---- |
 | $\alpha$  | 1.80 | 1.76 | 1.80 | 1.84 |
 | $\delta$  | 0.11 | 0.06 | 0.11 | 0.15 |
-| $\beta$  | 2.21 | 2.19 | 2.21 | 2.23 |
-| $\nu$[^2]  | 0.90 | 0.80 | 0.90 | 1.01 |
+| $\beta$   | 2.21 | 2.19 | 2.21 | 2.23 |
+| $\nu$[^2] | 0.90 | 0.80 | 0.90 | 1.01 |
 | $\sigma$  | 0.07 | 0.06 | 0.07 | 0.08 |
 
 The inferences on these parameters are quite precise. Using the posterior mean,
 we can plot the fitted linear trend:
 
-
-<div style="text-align: center;">
-  <img src="/post-images/backlight-power-usage/posterior_loc_linear_trend.svg" alt=
-  "Linear trend fit from the model overlaid on the observations, showing a strong
-    fit."
-    style="display: block; margin: 0 auto"/>
-</div>
+![Linear trend fit from the model overlaid on the observations, showing a strong fit.](/post-images/backlight-power-usage/posterior_loc_linear_trend.svg)
 
 Based on the posterior diagnostics and visual trend here, this model
 appropriately captures the main assocation between power and brightness.
@@ -166,7 +151,7 @@ percentage point requires an additional 22.1 mW**.
 
 A more practical interpretation of this result is to reframe it in terms of
 battery life with some ballpark numbers. If we assume some baseline power usage
-$P_{base}$, a battery capacity $E$, and the power cost of raising the 
+$P_{base}$, a battery capacity $E$, and the power cost of raising the
 brightness by one percent of $P_{backlight}$, then change in battery life
 is:
 
@@ -185,14 +170,13 @@ reduces (increases) my total battery life by about 10 minutes.**
 The effect here is, of course, highly dependent on the baseline power usage of
 my laptop. The greater share of power draw from non-screen components, the less
 screen brightness matters. I cannot generalize to other devices, but some rules
-of thumb that one could glean is that the more _efficient_ the device, such as 
+of thumb that one could glean is that the more _efficient_ the device, such as
 modern ARM-based machines,[^3] the more important screen brightness becomes in
 determining battery life. Although, I suppose some of those devices may also
 have more efficient screens (I am personally interested in how this experiment
 would turn out on machines with OLED screens). Alternatively, on a beefy gaming
 laptop the screen may make up a relatively small fraction of the overall power
 draw, so changing up the brightness would give little actual benefit.
-
 
 ## Experiment code
 
@@ -270,7 +254,7 @@ def set_brightness_and_run_collection(
   while time.time() - start_time < total_seconds:
     curr = power_reading()
     # Wait until second reading to get de-smoothed power reading
-    if prev is not None:       
+    if prev is not None:
       true_power = psu.desmooth_power_reading(curr, prev)
       measurements.append(
         Measurement(
@@ -313,24 +297,24 @@ if __name__ == "__main__":
   save_measurement_results(meas, "measurements_true_power.json")
 ```
 
-
-
-[^1]: In contrast to more advanced modern display technologies that include
+[^1]:
+    In contrast to more advanced modern display technologies that include
     multiple dimming zones, where the backlight dynamically adjusts to the
-image on the screen to enhance contrast. OLED displays are an extreme version
-of this where each pixel emits light independently and true blacks can be
-achieved by turning off the pixel entirely.
+    image on the screen to enhance contrast. OLED displays are an extreme version
+    of this where each pixel emits light independently and true blacks can be
+    achieved by turning off the pixel entirely.
 
-[^2]: Of note with the inferred value of the $\nu$ parameter is that the mean
+[^2]:
+    Of note with the inferred value of the $\nu$ parameter is that the mean
     of a Student's $t$ distribution only exists if $\nu > 1$. My data is most
-compatible with values below this, indicating the Student's $t$ model needs
-very significant tails to manage the noise. This is a good argument against Student's
-$t$ as a valid model for this data in the generative sense. I do not think that
-this invalidates any of my inferences about the main trend, but it does not
-adequately capture the behavior of the noise generation proecess. In fact, if
-we try to perform some posterior predictive checks against our observed data,
-the generated data has far too wide of a spread (to include some impossible
-values). If we _were_ interested in more carefully modeling the full data
-generating process, we would need to explore alternative models.
+    compatible with values below this, indicating the Student's $t$ model needs
+    very significant tails to manage the noise. This is a good argument against Student's
+    $t$ as a valid model for this data in the generative sense. I do not think that
+    this invalidates any of my inferences about the main trend, but it does not
+    adequately capture the behavior of the noise generation proecess. In fact, if
+    we try to perform some posterior predictive checks against our observed data,
+    the generated data has far too wide of a spread (to include some impossible
+    values). If we _were_ interested in more carefully modeling the full data
+    generating process, we would need to explore alternative models.
 
 [^3]: Which I do not have.
