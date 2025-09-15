@@ -21,12 +21,8 @@ export default async function Page({ params }: PageOpts) {
 
   return (
     <main className="space-y-4">
-      <Post
-        title={frontmatter.title}
-        date={frontmatter.date}
-        slug={paramsVal.post}
-      >
-        <div className="post mx-auto space-y-4">{content}</div>
+      <Post title={frontmatter.title} date={frontmatter.date}>
+        {content}
       </Post>
     </main>
   );

@@ -13,12 +13,8 @@ export default async function Page() {
 
   return (
     <main className="space-y-4">
-      <Post
-        title={post.frontmatter.title}
-        date={post.frontmatter.date}
-        slug={latestPost.slug}
-      >
-        <div className="post mx-auto space-y-4">{post.content}</div>
+      <Post title={post.frontmatter.title} date={post.frontmatter.date}>
+        {post.content}
       </Post>
     </main>
   );

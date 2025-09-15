@@ -5,12 +5,10 @@ import Date from "./date";
 export function Post({
   title,
   date,
-  slug,
   children,
 }: {
   title: string;
   date: string;
-  slug: string;
   children: React.ReactElement;
 }) {
   return (
@@ -23,7 +21,7 @@ export function Post({
           <Date value={date} />
         </div>
       </div>
-      {children}
+      <div className="post mx-auto space-y-4">{children}</div>
       <div className="mt-4 flex justify-center md:mt-16">
         <Link href="/posts">More Posts</Link>
       </div>
