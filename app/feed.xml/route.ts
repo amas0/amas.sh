@@ -2,6 +2,10 @@ import { config } from "@/config";
 import { getAllPosts } from "@/lib/posts";
 import RSS from "rss";
 
+export const dynamic = "force-static";
+
+export const revalidate = false;
+
 export async function GET() {
   const blogPosts = await getAllPosts();
 
