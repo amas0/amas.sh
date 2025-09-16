@@ -2,8 +2,12 @@ import { config } from "@/config";
 import { getAllPosts } from "@/lib/posts";
 import RSS from "rss";
 
+export const dynamic = "force-static";
+
+export const revalidate = false;
+
 export async function GET() {
-  const blogPosts = await getAllPosts(); // Fetch your blog posts or any other data you want to feed
+  const blogPosts = await getAllPosts();
 
   const siteUrl = config.url;
 
@@ -23,7 +27,7 @@ export async function GET() {
     feed.item({
       title: post.title,
       description: post.description,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${siteUrl}/${post.slug}`,
       guid: post.slug,
       date: post.date,
     });

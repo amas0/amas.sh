@@ -17,15 +17,14 @@ export default async function Page({ params }: PageOpts) {
     return notFound();
   }
 
+  const { content, frontmatter } = post;
+
   return (
     <main className="space-y-4">
-      <Post title={post.data.title} date={post.data.date} slug={post.slug} >
-        <div
-          className="post mx-auto space-y-4"
-          dangerouslySetInnerHTML={{ __html: post.remark }}
-        ></div>
+      <Post title={frontmatter.title} date={frontmatter.date}>
+        {content}
       </Post>
-    </main >
+    </main>
   );
 }
 
@@ -37,13 +36,15 @@ export async function generateMetadata({ params }: PageOpts) {
     return notFound();
   }
 
-  const title = `${post.data.title} | ${config.name}`;
-  const description = post.data.description;
+  const { frontmatter } = post;
+
+  const title = `${frontmatter.title} | ${config.name}`;
+  const description = frontmatter.description;
 
   let images = config.metadata.openGraph?.images;
 
   return {
-    title: post ? `${post.data.title} | ${config.name}` : "Not Found",
+    title: `${frontmatter.title} | ${config.name}`,
     description,
     openGraph: {
       ...config.metadata.openGraph,
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageOpts) {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   return posts.map((post) => ({
     slug: post.slug,

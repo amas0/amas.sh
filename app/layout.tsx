@@ -32,13 +32,19 @@ export default function Layout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
           <TooltipProvider>
             <div className="space-y-4 max-w-3xl mx-auto flex flex-col h-full min-h-screen p-4 md:py-8">
-              <header className="mb-4">
+              <header className="mb-8 xl:mb-16">
                 <div className="flex items-center justify-between">
                   <MainNav />
                   <div className="flex flex-1 items-center justify-end space-x-2">
@@ -47,15 +53,22 @@ export default function Layout({
                         className="no-underline"
                         href={config.socials.github}
                       >
-                        <Image src="/github.svg" alt="GitHub" width={20} height={20}
-                          className="filter dark:invert transition-filter duration-300" />
+                        <Image
+                          src="/github.svg"
+                          alt="GitHub"
+                          width={20}
+                          height={20}
+                          className="filter dark:invert transition-filter duration-300"
+                        />
                       </Link>
-                      <Link
-                        className="no-underline"
-                        href={config.socials.bsky}
-                      >
-                        <Image src="/bluesky.svg" alt="Bluesky" width={20} height={20}
-                          className="filter dark:invert transition-filter duration-300" />
+                      <Link className="no-underline" href={config.socials.bsky}>
+                        <Image
+                          src="/bluesky.svg"
+                          alt="Bluesky"
+                          width={20}
+                          height={20}
+                          className="filter dark:invert transition-filter duration-300"
+                        />
                       </Link>
                     </nav>
                     <ColorModeToggle />

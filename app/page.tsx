@@ -1,23 +1,20 @@
-import { config } from "@/config";
-import { getPost, getAllPosts } from "@/lib/posts";
 import { Post } from "@/components/post";
-import { notFound } from "next/navigation";
+import { getAllPosts, getPost } from "@/lib/posts";
 
 export default async function Page() {
-  const latestPostListing = getAllPosts({ limit: 1 });
-  const latestPost = await getPost(latestPostListing[0].slug)
+  const posts = await getAllPosts();
+  const latestPost = posts[0];
 
-  if (!latestPost) {
-    return notFound();
+  const post = await getPost(latestPost.slug);
+
+  if (!post) {
+    return <main className="space-y-4">No posts found</main>;
   }
 
   return (
     <main className="space-y-4">
-      <Post title={latestPost.data.title} date={latestPost.data.date} slug={latestPost.slug}>
-        <div
-          className="post mx-auto space-y-4"
-          dangerouslySetInnerHTML={{ __html: latestPost.remark }}
-        ></div>
+      <Post title={post.frontmatter.title} date={post.frontmatter.date}>
+        {post.content}
       </Post>
     </main>
   );

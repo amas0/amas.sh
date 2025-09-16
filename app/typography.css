@@ -14,7 +14,7 @@
   }
 
   a {
-    @apply text-muted-foreground decoration-muted-foreground hover:text-foreground hover:decoration-foreground underline underline-offset-4;
+    @apply text-foreground decoration-muted-foreground hover:text-foreground hover:decoration-foreground underline underline-offset-4;
   }
 
   h2 {

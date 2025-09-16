@@ -1,35 +1,20 @@
-import rehypeToc from "@jsdevtools/rehype-toc";
+import { mdxComponents } from "@/components/mdx-components";
 import fs from "fs";
 import { glob } from "glob";
-import fm from "gray-matter";
+import { compileMDX, MDXRemoteProps } from "next-mdx-remote/rsc";
 import path from "path";
-import rehypeDocument from "rehype-document";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
-import rehypeStringify from "rehype-stringify";
-import remarkMath from "remark-math";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkGFM from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeRaw from "rehype-raw";
-import { unified } from "unified";
-import { z } from "zod";
+import remarkMath from "remark-math";
 
-type PostListing = {
-  slug: string;
+type Frontmatter = {
   title: string;
-  date: Date;
+  date: string;
   description: string;
 };
-
-const OTHER_POSTS: PostListing[] = [];
-
-const PostFrontMatterSchema = z.object({
-  title: z.string(),
-  date: z.date(),
-  description: z.string(),
-});
 
 export interface Post {
   data: {
@@ -41,88 +26,70 @@ export interface Post {
   slug: string;
 }
 
-export async function getPost(slug: string) {
-  try {
-    const file = fs.readFileSync(
-      path.join(process.cwd(), "posts", `${slug}.md`)
-    );
-    const { data, content } = fm(file.toString());
-
-    const post = PostFrontMatterSchema.parse(data);
-
-    const u = unified()
-      .use(remarkParse)
-      .use(remarkGFM)
-      .use(remarkMath)
-      .use(remarkRehype, { allowDangerousHtml: true })
-      .use(rehypeRaw)
-      .use(rehypeSlug)
-      .use(rehypeKatex)
-      .use(rehypeDocument, {
-        // Get the latest one from: <https://katex.org/docs/browser>.
-        css: "https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css",
-      });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    //.use(rehypeToc, {
-    //  nav: true,
-    //  customizeTOC: (args) => {
-    //    if (!args.children) {
-    //      return true;
-    //    }
-
-    //    return {
-    //      type: "element",
-    //      tagName: "nav",
-    //      properties: { className: "toc" },
-    //      children: [...args.children],
-    //    };
-    //  },
-    //});
-
-    const f = await u
-      .use(rehypePrettyCode, {
-        theme: "github-dark",
-      })
-      .use(rehypeStringify)
-      .process(content);
-
-    return {
-      data: post,
-      content,
-      slug,
-      remark: String(f),
-    };
-  } catch (e) {
-    return null;
-  }
+async function compilePost(source: MDXRemoteProps["source"]) {
+  return await compileMDX<Frontmatter>({
+    source,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          rehypePrettyCode,
+          rehypeSlug,
+          rehypeKatex,
+          rehypeUnwrapImages,
+        ],
+        remarkPlugins: [remarkGFM, remarkMath],
+      },
+    },
+    components: mdxComponents,
+  });
 }
 
-export const getAllPosts = ({
-  limit,
-}: { limit?: number } = {}): PostListing[] => {
-  const files = glob.sync(path.join("posts/*.md"));
-  let posts = files
-    .map((filename: string) => {
-      const file = fs.readFileSync(path.join(process.cwd(), filename));
-      const { data } = fm(file.toString());
+function readFile(path: string) {
+  if (fs.existsSync(path)) {
+    return fs.readFileSync(path, "utf-8");
+  }
 
-      const { title, date, description } = PostFrontMatterSchema.parse(data);
+  return null;
+}
+
+export async function getPost(slug: string) {
+  const source = readFile(path.join(process.cwd(), "posts", `${slug}.md`));
+
+  if (!source) {
+    return null;
+  }
+
+  const { content, frontmatter } = await compilePost(source);
+
+  return { content, frontmatter };
+}
+
+export async function getAllPosts() {
+  const files = glob.sync(path.join("posts/*.md*"));
+
+  const posts = await Promise.all(
+    files.map(async (filename: string) => {
+      const source = readFile(path.join(process.cwd(), filename));
+
+      if (!source) {
+        return null;
+      }
+
+      const { frontmatter } = await compilePost(source);
 
       const slug = filename.split("/")[1]?.slice(0, -3);
 
       return {
+        ...frontmatter,
         slug,
-        title,
-        date,
-        description,
       };
     })
-    .concat(OTHER_POSTS)
+  );
+
+  const sortedPosts = posts
+    .filter((post) => post !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  if (limit) {
-    return posts.slice(0, limit);
-  }
-
-  return posts;
-};
+  return sortedPosts;
+}

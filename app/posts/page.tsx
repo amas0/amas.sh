@@ -1,10 +1,11 @@
+import Date from "@/components/date";
 import { config } from "@/config";
 import { getAllPosts } from "@/lib/posts";
 import { type Metadata } from "next";
 import Link from "next/link";
 
-export default function PostPage() {
-  const posts = getAllPosts();
+export default async function PostPage() {
+  const posts = await getAllPosts();
   return (
     <main className="space-y-4">
       <h1>Posts</h1>
@@ -13,7 +14,10 @@ export default function PostPage() {
           if (post.slug) {
             return (
               <li key={post.slug}>
-                <Link href={post.slug}>{post.date.toLocaleDateString()} - {post.title}</Link>
+                <div className="flex gap-2">
+                  <Date value={post.date} />
+                  <Link href={post.slug}>{post.title}</Link>
+                </div>
               </li>
             );
           }
