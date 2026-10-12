@@ -1,9 +1,4 @@
 export function formatDate(datestr: string) {
-  const date = new Date(datestr);
-
-  const month = `${date.getMonth() + 1}`.padStart(2, "0");
-
-  const day = `${date.getDate()}`.padStart(2, "0");
-
-  return `${date.getFullYear()}/${month}/${day}`;
+  // Keep the calendar date authored in the ISO timestamp, not the build's timezone.
+  return datestr.split("T")[0].replaceAll("-", "/");
 }
