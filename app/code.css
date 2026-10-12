@@ -2,6 +2,19 @@ figure > pre {
   @apply overflow-x-auto rounded p-3 max-w-full box-border;
 }
 
+/* Shiki emits both palettes; the site's theme class selects the active one. */
+pre[data-theme],
+pre[data-theme] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+.dark pre[data-theme],
+.dark pre[data-theme] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
 figcaption {
   @apply mb-1 ml-2 text-sm text-muted-foreground;
 }

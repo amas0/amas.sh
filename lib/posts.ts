@@ -1,4 +1,5 @@
 import { mdxComponents } from "@/components/mdx-components";
+import { codeHighlightOptions } from "@/lib/code";
 import fs from "fs";
 import { glob } from "glob";
 import { compileMDX, MDXRemoteProps } from "next-mdx-remote/rsc";
@@ -33,7 +34,7 @@ async function compilePost(source: MDXRemoteProps["source"]) {
       parseFrontmatter: true,
       mdxOptions: {
         rehypePlugins: [
-          rehypePrettyCode,
+          [rehypePrettyCode, codeHighlightOptions],
           rehypeSlug,
           rehypeKatex,
           rehypeUnwrapImages,
