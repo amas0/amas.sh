@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import "katex/dist/katex.min.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,12 +33,6 @@ export default function Layout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
