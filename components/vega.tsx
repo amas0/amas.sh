@@ -1,12 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { VegaLite } from "react-vega";
+import { VegaEmbed } from "react-vega";
+import type { VisualizationSpec, EmbedOptions } from "vega-embed";
 
-export function VegaLiteChart({ spec }: any) {
+const options: EmbedOptions = { mode: "vega-lite" };
+
+export function VegaLiteChart({ spec }: { spec: VisualizationSpec }) {
   return (
     <div className="flex justify-center w-full">
-      <VegaLite spec={spec} />
+      <VegaEmbed spec={spec} options={options} />
     </div>
   );
 }

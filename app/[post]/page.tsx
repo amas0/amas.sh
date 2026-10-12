@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageOpts) {
   const title = `${frontmatter.title} | ${config.name}`;
   const description = frontmatter.description;
 
-  let images = config.metadata.openGraph?.images;
+  const images = config.metadata.openGraph?.images;
 
   return {
     title: `${frontmatter.title} | ${config.name}`,
@@ -61,6 +61,6 @@ export async function generateStaticParams() {
   const posts = await getAllPosts();
 
   return posts.map((post) => ({
-    slug: post.slug,
+    post: post.slug,
   }));
 }

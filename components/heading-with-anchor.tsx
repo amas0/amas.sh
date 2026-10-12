@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { Link } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export type MDXHeadingProps = {
   children?: React.ReactNode;
@@ -23,13 +22,6 @@ export function HeadingWithAnchor({
   children,
   className,
 }: HeadingWithAnchorProps) {
-  const [url, setUrl] = useState<string>();
-
-  useEffect(() => {
-    const url = `${window.location.origin}${window.location.pathname}#${id}`;
-    setUrl(url);
-  });
-
   const renderHeading = () => {
     const baseClasses = "scroll-mt-20";
 
@@ -83,7 +75,7 @@ export function HeadingWithAnchor({
     <div className={cn("group relative", className)}>
       {renderHeading()}
       <a
-        href={url}
+        href={`#${id}`}
         className={cn(
           "absolute -left-8 top-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100",
           "rounded p-1 hover:text-foreground"

@@ -70,16 +70,18 @@ export const mdxComponents = {
     </HeadingWithAnchor>
   ),
 
-  a: ({ children, ...props }: any) => {
+  a: ({ children, ...props }: React.ComponentProps<"a">) => {
     if (!props.href) return <>{children}</>;
 
-    return <Link {...props}>{children}</Link>;
+    return <Link {...props} href={props.href}>{children}</Link>;
   },
 
-  img: (props: any) => {
+  img: ({ alt = "", ...props }: React.ComponentProps<"img">) => {
     return (
       <div className="flex justify-center">
-        <img {...props} />
+        {/* Markdown images may be external and do not supply dimensions. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img {...props} alt={alt} />
       </div>
     );
   },

@@ -66,11 +66,11 @@ export async function getPost(slug: string) {
 }
 
 export async function getAllPosts() {
-  const files = glob.sync(path.join("posts/*.md*"));
+  const files = glob.sync("*.md", { cwd: path.join(process.cwd(), "posts") });
 
   const posts = await Promise.all(
     files.map(async (filename: string) => {
-      const source = readFile(path.join(process.cwd(), filename));
+      const source = readFile(path.join(process.cwd(), "posts", filename));
 
       if (!source) {
         return null;
@@ -78,7 +78,7 @@ export async function getAllPosts() {
 
       const { frontmatter } = await compilePost(source);
 
-      const slug = filename.split("/")[1]?.slice(0, -3);
+      const slug = path.basename(filename, ".md");
 
       return {
         ...frontmatter,
