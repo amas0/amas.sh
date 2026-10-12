@@ -498,7 +498,7 @@ shorter sessions spread across multiple days made sleep drain a relatively
 large fraction of overall battery drain, and as a result, dropping into
 hibernate after a few hours usefully extends usage time. Someone who uses their
 machine for longer sessions or has a laptop with significantly lower sleep
-drain wouldn't get as much benefit.[^5]
+drain wouldn't get as much benefit.[^6]
 
 
 --- 
@@ -546,5 +546,5 @@ drain wouldn't get as much benefit.[^5]
     putting my laptop to sleep at midnight should demand a more aggressive
     hibernate timer than doing so at 4 PM. The reality is that the
     always-hibernate battery life is a practical upper bound on what such a
-    system could save. I didn't want to go through all the effort to save maybe
-    another 10-15 minutes on average.
+    system could save. I didn't want to go through all the effort to save
+    maybe another 10-15 minutes on average.
