@@ -1,10 +1,7 @@
 ---
 title: Putting way too much thought into choosing a reasonable delay for a suspend-then-hibernate policy
 date: 2026-10-11T22:00:00.000-04:00
-description: An exploration and analysis of battery drain in different
-system states using Stan. This is used to pick a reasonable delay timer
-for suspend-then-hibernate that balances fast wake ups with saved awake
-battery life.
+description: An exploration and analysis of battery drain in different system states using Stan. This is used to pick a reasonable delay timer for suspend-then-hibernate that balances fast wake ups with saved awake battery life.
 ---
 
 I am an inconsistent laptop user. Sometimes I shut the lid and pick it back up
