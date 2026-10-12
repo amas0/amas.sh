@@ -36,7 +36,7 @@ export default function Layout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
+        <ThemeProvider attribute="class" enableSystem defaultTheme="light">
           <TooltipProvider>
             <div className="space-y-4 max-w-3xl mx-auto flex flex-col h-full min-h-screen p-4 md:py-8">
               <header className="mb-8 xl:mb-16">
